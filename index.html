@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inviit | 특별한 초대, 인빗</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #111b35;
+            --secondary: #ffffff;
+            --accent: #e8eaf4;
+            --text: #333333;
+            --gray: #f0f2f5;
+            --neon-blue: #4facfe;
+            --neon-purple: #b14ffd;
+            --neon-pink: #ff42a4;
+            --neon-glow: 0 0 10px rgba(79, 172, 254, 0.6), 0 0 20px rgba(177, 79, 253, 0.4);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: var(--primary);
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(79, 172, 254, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(177, 79, 253, 0.08) 0%, transparent 50%);
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            color: white;
+            border: none;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--neon-glow), 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-secondary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+        
+        .btn-secondary:hover {
+            color: var(--neon-blue);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(79, 172, 254, 0.5);
+        }
+        
+        .btn-secondary:hover::after {
+            left: 100%;
+        }
+        
+        /* Header Section */
+        header {
+            background-color: rgba(17, 27, 53, 0.8);
+            color: white;
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            letter-spacing: 1px;
+            text-transform: lowercase;
+        }
+        
+        .logo span {
+            margin-left: 10px;
+            background: linear-gradient(to right, #fff, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .diamonds {
+            display: flex;
+            position: relative;
+        }
+        
+        .diamond {
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            width: 15px;
+            height: 15px;
+            transform: rotate(45deg);
+            margin: 0 3px;
+            box-shadow: 0 0 10px rgba(79, 172, 254, 0.7);
+            animation: pulse 3s infinite alternate;
+        }
+        
+        .diamond:nth-child(1) {
+            animation-delay: 0s;
+        }
+        
+        .diamond:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        
+        .diamond:nth-child(3) {
+            animation-delay: 1s;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 5px rgba(79, 172, 254, 0.7);
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(177, 79, 253, 0.9);
+            }
+        }
+        
+        .diamond:first-child {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(17, 27, 53, 0.95), rgba(17, 27, 53, 0.8));
+            color: white;
+            padding: 12rem 0 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(79, 172, 254, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(177, 79, 253, 0.2) 0%, transparent 50%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(to right, #fff, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(79, 172, 254, 0.5);
+            letter-spacing: 1px;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        .hero-diamonds {
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            z-index: 2;
+        }
+        
+        .hero-diamond {
+            position: absolute;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            opacity: 0.2;
+            transform: rotate(45deg);
+            box-shadow: 0 0 30px rgba(177, 79, 253, 0.6);
+            animation: float 6s infinite ease-in-out;
+        }
+        
+        .hero-diamond:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            top: 0;
+            right: 50px;
+            animation-delay: 0s;
+        }
+        
+        .hero-diamond:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: -80px;
+            right: -20px;
+            animation-delay: 1s;
+        }
+        
+        .hero-diamond:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            top: 80px;
+            right: -50px;
+            animation-delay: 2s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: rotate(45deg) translate(0, 0);
+            }
+            50% {
+                transform: rotate(45deg) translate(15px, 15px);
+            }
+        }
+        
+        /* Why Section */
+        .why-section {
+            padding: 6rem 0;
+            background-color: rgba(255, 255, 255, 0.03);
+            position: relative;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .why-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.03), rgba(177, 79, 253, 0.03));
+            z-index: -1;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+            color: white;
+            text-shadow: 0 0 10px rgba(79, 172, 254, 0.3);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+            box-shadow: 0 0 10px rgba(79, 172, 254, 0.7);
+        }
+        
+        .why-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .why-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* How Section */
+        .how-section {
+            padding: 8rem 0;
+            background-color: rgba(17, 27, 53, 0.95);
+            position: relative;
+        }
+        
+        .how-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(79, 172, 254, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(177, 79, 253, 0.05) 0%, transparent 40%);
+            z-index: 0;
+        }
+        
+        .how-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .how-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 2.5rem;
+            text-align: center;
+            flex: 1 1 300px;
+            max-width: 350px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+        
+        .how-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+        }
+        
+        .how-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(79, 172, 254, 0.3);
+            border-color: rgba(79, 172, 254, 0.3);
+        }
+        
+        .how-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 8px rgba(79, 172, 254, 0.5));
+        }
+        
+        .how-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: white;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Team Section */
+        .team-section {
+            padding: 8rem 0;
+            background-color: rgba(17, 27, 53, 0.9);
+            color: white;
+            position: relative;
+        }
+        
+        .team-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 90%, rgba(79, 172, 254, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 10%, rgba(177, 79, 253, 0.05) 0%, transparent 40%);
+            z-index: 0;
+        }
+        
+        .team-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .team-values {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+        
+        .team-values h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .team-values-list {
+            margin-top: 2rem;
+        }
+        
+        .team-values-list li {
+            margin-bottom: 1rem;
+            list-style-type: none;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .team-values-list li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+        }
+        
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .team-member {
+            flex: 1 1 300px;
+            max-width: 350px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .team-member::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            height: 4px;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+            border-radius: 15px 15px 0 0;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+            z-index: -1;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(79, 172, 254, 0.2);
+            border-color: rgba(79, 172, 254, 0.2);
+        }
+        
+        .team-member:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .team-member h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+            background: linear-gradient(to right, #fff, var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .team-member h4 {
+            color: var(--neon-purple);
+            margin-bottom: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .team-member p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .team-member ul {
+            text-align: left;
+            padding-left: 1.5rem;
+        }
+        
+        .team-member li {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Culture Section */
+        .culture-section {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, rgba(17, 27, 53, 0.95), rgba(25, 35, 60, 0.95));
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .culture-section::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle at center, rgba(79, 172, 254, 0.08) 0%, transparent 50%);
+            animation: rotate 30s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .culture-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .culture-content h2 {
+            margin-bottom: 2.5rem;
+            font-size: 2.8rem;
+            background: linear-gradient(to right, #fff, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(79, 172, 254, 0.3);
+        }
+        
+        .culture-content p {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            line-height: 1.8;
+        }
+        
+        .culture-list {
+            margin-top: 4rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .culture-item {
+            flex: 1 1 250px;
+            max-width: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .culture-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(79, 172, 254, 0.1), rgba(177, 79, 253, 0.1));
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        
+        .culture-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(79, 172, 254, 0.3);
+            border-color: rgba(79, 172, 254, 0.3);
+        }
+        
+        .culture-item:hover::before {
+            opacity: 1;
+        }
+        
+        .culture-item h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            color: var(--neon-blue);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .culture-item h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, rgba(17, 27, 53, 0.7), rgba(25, 35, 60, 0.7));
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(79, 172, 254, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(177, 79, 253, 0.15) 0%, transparent 50%);
+            z-index: 0;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(79, 172, 254, 0.3);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .cta-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+            box-shadow: 0 0 10px rgba(79, 172, 254, 0.7);
+        }
+        
+        .cta-content p {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            margin-top: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: rgba(10, 17, 35, 0.95);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-logo {
+            margin-bottom: 2.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .social-links a {
+            font-size: 1.5rem;
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem;
+        }
+        
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .social-links a:hover::before {
+            opacity: 0.7;
+            transform: scale(1);
+        }
+        
+        .footer-nav {
+            margin-bottom: 2.5rem;
+        }
+        
+        .footer-nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .footer-nav a {
+            position: relative;
+            padding-bottom: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        
+        .footer-nav a:hover {
+            color: var(--neon-blue);
+        }
+        
+        .footer-nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .team-members {
+                gap: 1.5rem;
+            }
+            
+            .culture-item {
+                flex: 1 1 45%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .team-member, .culture-item {
+                flex: 1 1 100%;
+            }
+            
+            .cta-content h2 {
+                font-size: 2.5rem;
+            }
+            
+            .cta-content p {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .how-card, .team-member, .culture-item {
+                padding: 1.8rem;
+            }
+            
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-content p {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <div class="diamonds">
+                    <div class="diamond"></div>
+                    <div class="diamond"></div>
+                    <div class="diamond"></div>
+                </div>
+                <span>inviit</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#why">WHY Inviit</a></li>
+                    <li><a href="#how">HOW</a></li>
+                    <li><a href="#team">TEAM</a></li>
+                    <li><a href="#culture">CULTURE</a></li>
+                    <li><a href="#" class="btn btn-secondary">시작하기</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-diamonds">
+            <div class="hero-diamond"></div>
+            <div class="hero-diamond"></div>
+            <div class="hero-diamond"></div>
+        </div>
+        <div class="container hero-content">
+            <h1>특별한 초대, Inviit.</h1>
+            <p>파티와 모임을 더 특별하게 만들어주는 서비스</p>
+            <div>
+                <a href="#" class="btn btn-primary">지금 시작하기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Section -->
+    <section class="why-section" id="why">
+        <div class="container">
+            <h2 class="section-title">WHY Inviit?</h2>
+            <div class="why-content">
+                <p>소중한 모임, 파티, 행사를 구글폼이 아닌 '진짜 초대장'으로 초대하세요.</p>
+                <a href="#" class="btn btn-primary">더 알아보기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How Section -->
+    <section class="how-section" id="how">
+        <div class="container">
+            <h2 class="section-title">HOW?</h2>
+            <div class="how-content">
+                <div class="how-card">
+                    <div class="how-card-icon">✨</div>
+                    <h3>쉽고 빠른 초대장</h3>
+                    <p>쉽고 빠르게 예쁜 초대장을 만들어 파티를 주최하세요.</p>
+                </div>
+                <div class="how-card">
+                    <div class="how-card-icon">📋</div>
+                    <h3>참여자 관리</h3>
+                    <p>참여자 명단 및 응답을 효율적으로 관리할 수 있습니다.</p>
+                </div>
+                <div class="how-card">
+                    <div class="how-card-icon">📸</div>
+                    <h3>커뮤니티 기능</h3>
+                    <p>모임 현장의 사진과 후기를 함께 공유하는 커뮤니티 기능을 제공합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture Section -->
+    <section class="culture-section" id="culture">
+        <div class="container culture-content">
+            <h2>✨ Inviit's 팀 컬처</h2>
+            <p>"내가 기획하고 개발한 서비스가 수많은 사람들의 일상 속에 쓰인다!"</p>
+            <p>이 경험을 inviit 팀에서 함께해보세요.</p>
+            
+            <div class="culture-list">
+                <div class="culture-item">
+                    <h3>빠른 피드백</h3>
+                    <p>수평적 소통을 통한 효율적인 피드백 문화</p>
+                </div>
+                <div class="culture-item">
+                    <h3>유연한 개발</h3>
+                    <p>유연하고 속도감 있는 개발 프로세스</p>
+                </div>
+                <div class="culture-item">
+                    <h3>사용자 중심</h3>
+                    <p>진짜 사용자 중심의 기획과 개발</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section" id="team">
+        <div class="container">
+            <div class="team-header">
+                <h2 class="section-title">✨ Inviit's Co-Founder</h2>
+                <p>WHO Makes inviit?</p>
+            </div>
+            
+            <div class="team-values">
+                <p>저희는 창업 연합 동아리를 통해 2024년부터 만나 정기적인 모임과 프로젝트를 함께하며 '비즈니스 그 이상'의 청년 창업팀 문화를 만들어가고 있습니다.</p>
+                <h3>서로 성장하고 이끌어주는 팀, inviit의 문화입니다.</h3>
+            </div>
+            
+            <div class="team-members">
+                <div class="team-member">
+                    <h3>KDH</h3>
+                    <h4>의대 출신 기획자 | CEO</h4>
+                    <p><strong>학력 :</strong> 전북대학교 의과대학 재학</p>
+                    <p><strong>어떤 일을 하나요 ?</strong></p>
+                    <ul>
+                        <li>앱·웹 서비스의 기능 기획부터 서비스 운영 전략 수립까지 <strong>Inviit</strong>의 전반적인 성장 로드맵을 설계하고 실행</li>
+                        <li>마케팅 기획, 고객 미팅, 파트너사 협업, 인사·팀 빌딩 등 스타트업 운영에 필요한 모든 과정을 리드하며 팀을 이끄는 CEO</li>
+                        <li>사업계획서 작성, IR 피치덱 제작, 투자 유치 준비 등 비즈니스 확장을 위한 전략적 문서화 및 대외 커뮤니케이션 업무를 담당</li>
+                    </ul>
+                </div>
+                <div class="team-member">
+                    <h3>CSY</h3>
+                    <h4>프론트엔드 개발자 | CTO</h4>
+                    <p><strong>학력 :</strong> 이화여자대학교 컴퓨터공학 & 컴퓨터의학 재학</p>
+                    <p><strong>어떤 일을 하나요?</strong></p>
+                    <ul>
+                        <li>서비스의 전체 사용자 흐름을 기획하고, 실제로 iOS/Android 환경에서 작동하는 앱으로 구현</li>
+                        <li>사용자 경험(UX)을 최우선으로 고려하며 Flutter 등 크로스플랫폼 프레임워크를 활용해 앱의 핵심 기능을 제작</li>
+                    </ul>
+                </div>
+                <div class="team-member">
+                    <h3>PCH</h3>
+                    <h4>풀스택 개발자 | Developer</h4>
+                    <p><strong>학력:</strong> 연세대학교 전자전기공학부 졸업유예</p>
+                    <p><strong>어떤 일을 하나요?</strong></p>
+                    <ul>
+                        <li>웹과 앱 기능의 기획부터 프론트엔드 개발, 백엔드 구현, 데이터베이스 구축까지 전반적인 기술 개발을 담당</li>
+                        <li>서비스가 원활하게 작동할 수 있도록 전체 시스템을 설계하고 구현하는 풀스택 개발자</li>
+                    </ul>
+                </div>
+                <div class="team-member">
+                    <h3>OSY</h3>
+                    <h4>AI·데이터 전략 기획자 | CIO</h4>
+                    <p><strong>학력 :</strong> 국민대학교 AI빅데이터융합경영학과&인공지능학부 재학</p>
+                    <p><strong>어떤 일을 하나요?</strong></p>
+                    <ul>
+                        <li>사용자 데이터 분석, AI 기능 기획 등 Inviit 서비스의 기술적 확장성과 데이터 활용 방안을 설계</li>
+                        <li>데이터 기반 서비스 전략 수립 및 기획 전반을 담당</li>
+                        <li>대외 협업 및 서비스 기획 문서, 보고서 작성, 시장 조사 등을 수행</li>
+                    </ul>
+                </div>
+                <div class="team-member">
+                    <h3>JDY</h3>
+                    <h4>국제 디자인 경영 기획자 | CSO (BX Designer)</h4>
+                    <p><strong>학력:</strong> 연세대학교 국제대 문화디자인경영 재학</p>
+                    <p><strong>어떤 일을 하나요?</strong></p>
+                    <ul>
+                        <li>프로젝트 전반을 설계하고 이끄는 프로젝트 매니징 담당</li>
+                        <li>브랜드의 가치를 스토리로 풀어내는 브랜드 스토리텔링 수행</li>
+                        <li>사용자의 목소리를 가까이서 듣는 유저 리서치 수행</li>
+                        <li>해외 진출을 위한 대외 커뮤니케이션 담당</li>
+                    </ul>
+                </div>
+                <div class="team-member">
+                    <h3>CJW</h3>
+                    <h4>커뮤니케이션 디자이너 | Designer</h4>
+                    <p><strong>학력 :</strong> 단국대학교 커뮤니케이션 디자인과 재학</p>
+                    <p><strong>어떤 일을 하나요?</strong></p>
+                    <ul>
+                        <li><strong>Inviit</strong>의 아이덴티티를 시각적으로 풀어내고, 로고와 SNS 등 브랜드 비주얼을 담당</li>
+                        <li>서비스의 UI/UX를 설계하고, 사용자 경험 전반을 기획·구현</li>
+                        <li>사용자의 여정을 설계하고, 브랜드와 사용자가 만나는 모든 접점에 관여</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container cta-content">
+            <h2>💫 inviit으로 시작해보세요.</h2>
+            <p>내가 주최하는 모든 순간을 더 특별하게.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">지금 시작하기</a>
+                <a href="#" class="btn btn-secondary">더 알아보기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <div class="logo">
+                    <div class="diamonds">
+                        <div class="diamond"></div>
+                        <div class="diamond"></div>
+                        <div class="diamond"></div>
+                    </div>
+                    <span>inviit</span>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://www.instagram.com/inviit.official" target="_blank">Instagram</a>
+            </div>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="#why">WHY Inviit</a></li>
+                    <li><a href="#how">HOW</a></li>
+                    <li><a href="#team">TEAM</a></li>
+                    <li><a href="#culture">CULTURE</a></li>
+                </ul>
+            </nav>
+            <div class="copyright">
+                <p>&copy; 2025 Inviit. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
