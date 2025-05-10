@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inviit | 특별한 초대, 인빗</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap');
-        
-        :root {
+         :root {
             --primary: #0a0a0f;
             --secondary: #ffffff;
             --accent: #111114;
@@ -36,12 +36,13 @@
             line-height: 1.6;
             overflow-x: hidden;
             background-color: var(--primary);
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(46, 106, 246, 0.03) 0%, transparent 70%),
-                radial-gradient(circle at 80% 70%, rgba(151, 71, 255, 0.03) 0%, transparent 70%);
+            background-image: radial-gradient(circle at 20% 30%, rgba(46, 106, 246, 0.03) 0%, transparent 70%), radial-gradient(circle at 80% 70%, rgba(151, 71, 255, 0.03) 0%, transparent 70%);
         }
         
-        h1, h2, h3, h4 {
+        h1,
+        h2,
+        h3,
+        h4 {
             font-weight: 700;
             margin-bottom: 1rem;
         }
@@ -97,7 +98,7 @@
         .btn-primary:hover::before {
             opacity: 1;
         }
-
+        
         .btn-secondary {
             background-color: transparent;
             color: white;
@@ -128,8 +129,8 @@
         .btn-secondary:hover::after {
             left: 100%;
         }
-        
         /* Header Section */
+        
         header {
             background-color: rgba(10, 10, 15, 0.85);
             color: white;
@@ -243,8 +244,8 @@
             transform: scaleX(1);
             transform-origin: left;
         }
-        
         /* Hero Section */
+        
         .hero {
             background: linear-gradient(135deg, rgba(10, 10, 15, 0.95), rgba(15, 15, 25, 0.9));
             color: white;
@@ -260,9 +261,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(46, 106, 246, 0.1) 0%, transparent 60%),
-                radial-gradient(circle at 80% 70%, rgba(151, 71, 255, 0.1) 0%, transparent 60%);
+            background: radial-gradient(circle at 20% 30%, rgba(46, 106, 246, 0.1) 0%, transparent 60%), radial-gradient(circle at 80% 70%, rgba(151, 71, 255, 0.1) 0%, transparent 60%);
             z-index: 1;
         }
         
@@ -337,15 +336,16 @@
         }
         
         @keyframes float {
-            0%, 100% {
+            0%,
+            100% {
                 transform: rotate(45deg) translate(0, 0);
             }
             50% {
                 transform: rotate(45deg) translate(15px, 15px);
             }
         }
-        
         /* Why Section */
+        
         .why-section {
             padding: 6rem 0;
             background-color: rgba(15, 15, 20, 0.7);
@@ -411,8 +411,8 @@
             font-size: 1.1rem;
             letter-spacing: 1px;
         }
-        
         /* How Section */
+        
         .how-section {
             padding: 8rem 0;
             background-color: rgba(10, 10, 15, 0.95);
@@ -426,9 +426,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 30% 20%, rgba(46, 106, 246, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(151, 71, 255, 0.03) 0%, transparent 50%);
+            background: radial-gradient(circle at 30% 20%, rgba(46, 106, 246, 0.03) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(151, 71, 255, 0.03) 0%, transparent 50%);
             z-index: 0;
         }
         
@@ -492,8 +490,8 @@
             color: white;
             letter-spacing: 0.5px;
         }
-        
         /* App Screenshots Section */
+        
         .app-section {
             padding: 8rem 0;
             background-color: rgba(8, 8, 12, 0.95);
@@ -508,9 +506,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(46, 106, 246, 0.05) 0%, transparent 60%),
-                radial-gradient(circle at 80% 70%, rgba(151, 71, 255, 0.05) 0%, transparent 60%);
+            background: radial-gradient(circle at 20% 30%, rgba(46, 106, 246, 0.05) 0%, transparent 60%), radial-gradient(circle at 80% 70%, rgba(151, 71, 255, 0.05) 0%, transparent 60%);
             z-index: 0;
         }
         
@@ -560,7 +556,8 @@
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             cursor: pointer;
             background-color: var(--glass-bg);
-            aspect-ratio: 16/9; /* 웹페이지 화면 비율 */
+            aspect-ratio: 16/9;
+            /* 웹페이지 화면 비율 */
             border: 1px solid var(--card-border);
         }
         
@@ -580,7 +577,8 @@
             background: linear-gradient(to bottom, transparent 70%, rgba(0, 0, 0, 0.6));
             opacity: 0.6;
             transition: opacity 0.3s ease;
-            pointer-events: none; /* 이미지 클릭 가능하도록 */
+            pointer-events: none;
+            /* 이미지 클릭 가능하도록 */
         }
         
         .screenshot:hover::after {
@@ -599,32 +597,32 @@
         .screenshot:hover img {
             transform: scale(1.03);
         }
-        
         /* 첫 번째 이미지 (메인 웹페이지) */
+        
         .screenshot:nth-child(1) {
             grid-column: 1 / 13;
             grid-row: 1 / 3;
         }
-        
         /* 두 번째 이미지 (서브 페이지 1) */
+        
         .screenshot:nth-child(2) {
             grid-column: 1 / 7;
             grid-row: 3 / 5;
         }
-        
         /* 세 번째 이미지 (서브 페이지 2) */
+        
         .screenshot:nth-child(3) {
             grid-column: 7 / 13;
             grid-row: 3 / 5;
         }
-        
         /* 네 번째 이미지 (서브 기능 1) */
+        
         .screenshot:nth-child(4) {
             grid-column: 1 / 7;
             grid-row: 5 / 7;
         }
-        
         /* 다섯 번째 이미지 (서브 기능 2) */
+        
         .screenshot:nth-child(5) {
             grid-column: 7 / 13;
             grid-row: 5 / 7;
@@ -634,8 +632,8 @@
             margin-top: 5rem;
             display: inline-block;
         }
-        
         /* Team Section */
+        
         .team-section {
             padding: 8rem 0;
             background-color: rgba(12, 12, 18, 0.95);
@@ -650,9 +648,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 10% 90%, rgba(46, 106, 246, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 90% 10%, rgba(151, 71, 255, 0.03) 0%, transparent 50%);
+            background: radial-gradient(circle at 10% 90%, rgba(46, 106, 246, 0.03) 0%, transparent 50%), radial-gradient(circle at 90% 10%, rgba(151, 71, 255, 0.03) 0%, transparent 50%);
             z-index: 0;
         }
         
@@ -823,8 +819,8 @@
             position: absolute;
             left: -1rem;
         }
-        
         /* Culture Section */
+        
         .culture-section {
             padding: 8rem 0;
             background: linear-gradient(135deg, rgba(10, 10, 15, 0.97), rgba(15, 15, 25, 0.97));
@@ -944,8 +940,8 @@
             height: 2px;
             background: var(--gradient-main);
         }
-        
         /* CTA Section */
+        
         .cta-section {
             padding: 8rem 0;
             background: linear-gradient(135deg, rgba(10, 10, 15, 0.8), rgba(15, 15, 25, 0.8));
@@ -964,9 +960,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 30% 40%, rgba(46, 106, 246, 0.08) 0%, transparent 60%),
-                radial-gradient(circle at 70% 60%, rgba(151, 71, 255, 0.08) 0%, transparent 60%);
+            background: radial-gradient(circle at 30% 40%, rgba(46, 106, 246, 0.08) 0%, transparent 60%), radial-gradient(circle at 70% 60%, rgba(151, 71, 255, 0.08) 0%, transparent 60%);
             z-index: 0;
         }
         
@@ -1015,8 +1009,8 @@
             gap: 1.5rem;
             flex-wrap: wrap;
         }
-        
         /* Footer */
+        
         footer {
             background-color: rgba(8, 8, 12, 0.97);
             color: white;
@@ -1122,50 +1116,42 @@
             opacity: 0.7;
             letter-spacing: 0.5px;
         }
-        
         /* Media Queries */
+        
         @media (max-width: 992px) {
             .hero h1 {
                 font-size: 3rem;
             }
-            
             .team-members {
                 gap: 1.5rem;
             }
-            
             .culture-item {
                 flex: 1 1 45%;
             }
-            
             .app-screenshots {
                 grid-template-columns: repeat(6, 1fr);
                 grid-auto-rows: minmax(180px, auto);
             }
-            
             /* 첫 번째 이미지 */
             .screenshot:nth-child(1) {
                 grid-column: 1 / 7;
                 grid-row: 1 / 2;
             }
-            
             /* 두 번째 이미지 */
             .screenshot:nth-child(2) {
                 grid-column: 1 / 4;
                 grid-row: 2 / 3;
             }
-            
             /* 세 번째 이미지 */
             .screenshot:nth-child(3) {
                 grid-column: 4 / 7;
                 grid-row: 2 / 3;
             }
-            
             /* 네 번째 이미지 */
             .screenshot:nth-child(4) {
                 grid-column: 1 / 4;
                 grid-row: 3 / 4;
             }
-            
             /* 다섯 번째 이미지 */
             .screenshot:nth-child(5) {
                 grid-column: 4 / 7;
@@ -1177,33 +1163,27 @@
             .nav-links {
                 display: none;
             }
-            
             .hero h1 {
                 font-size: 2.5rem;
             }
-            
             .section-title {
                 font-size: 2rem;
             }
-            
-            .team-member, .culture-item {
+            .team-member,
+            .culture-item {
                 flex: 1 1 100%;
             }
-            
             .cta-content h2 {
                 font-size: 2.5rem;
             }
-            
             .cta-content p {
                 font-size: 1.3rem;
             }
-            
             .app-screenshots {
                 grid-template-columns: 1fr;
                 grid-auto-rows: minmax(200px, auto);
                 gap: 15px;
             }
-            
             /* 모바일에서는 각 이미지가 한 줄로 표시되도록 설정 */
             .screenshot:nth-child(1),
             .screenshot:nth-child(2),
@@ -1212,23 +1192,18 @@
             .screenshot:nth-child(5) {
                 grid-column: 1 / 2;
             }
-            
             .screenshot:nth-child(1) {
                 grid-row: 1 / 2;
             }
-            
             .screenshot:nth-child(2) {
                 grid-row: 2 / 3;
             }
-            
             .screenshot:nth-child(3) {
                 grid-row: 3 / 4;
             }
-            
             .screenshot:nth-child(4) {
                 grid-row: 4 / 5;
             }
-            
             .screenshot:nth-child(5) {
                 grid-row: 5 / 6;
             }
@@ -1238,54 +1213,47 @@
             .container {
                 padding: 0 1.5rem;
             }
-            
             .hero h1 {
                 font-size: 2rem;
             }
-            
             .hero p {
                 font-size: 1.1rem;
             }
-            
             .section-title {
                 font-size: 1.8rem;
             }
-            
-            .how-card, .team-member, .culture-item {
+            .how-card,
+            .team-member,
+            .culture-item {
                 padding: 1.8rem;
             }
-            
             .cta-content h2 {
                 font-size: 2rem;
             }
-            
             .cta-content p {
                 font-size: 1.1rem;
             }
-            
             .btn {
                 padding: 0.7rem 1.5rem;
                 font-size: 0.9rem;
             }
-            
             .app-screenshots {
                 gap: 12px;
             }
-            
             .screenshot {
-                aspect-ratio: 4/3; /* 더 작은 화면에서는 비율 조정 */
+                aspect-ratio: 4/3;
+                /* 더 작은 화면에서는 비율 조정 */
             }
-            
             .app-title {
                 font-size: 2.2rem;
             }
-            
             .app-subtitle {
                 font-size: 1.1rem;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header>
@@ -1305,7 +1273,7 @@
                     <li><a href="#app">서비스</a></li>
                     <li><a href="#culture">CULTURE</a></li>
                     <li><a href="#team">TEAM</a></li>
-                    <li><a href="#" class="btn btn-secondary">시작하기</a></li>
+                    <li><a href="https://inviit.me/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">시작하기</a></li>
                 </ul>
             </nav>
         </div>
@@ -1322,9 +1290,11 @@
             <h1>특별한 초대, Inviit.</h1>
             <p>파티와 모임을 더 특별하게 만들어주는 서비스</p>
             <div>
-                <a href="#" class="btn btn-primary">지금 시작하기</a>
+                <a href="https://inviit.me/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">지금 시작하기</a>
             </div>
+
         </div>
+
     </section>
 
     <!-- Why Section -->
@@ -1367,7 +1337,7 @@
         <div class="container app-content">
             <h2 class="app-title">특별한 순간, 단 하나뿐인 초대장</h2>
             <p class="app-subtitle">Inviit 앱으로 모임과 파티를 더 특별하게 만들어보세요</p>
-            
+
             <div class="app-screenshots">
                 <div class="screenshot">
                     <img src="images/로그인 첫 페이지.png" alt="로그인 첫 페이지">
@@ -1385,11 +1355,12 @@
                     <img src="images/이벤트 생성2.png" alt="이벤트 생성2">
                 </div>
             </div>
-            
+
             <div class="app-cta">
-                <a href="#" class="btn btn-primary">지금 시작하기</a>
+                <a href="https://inviit.me/" class="btn btn-primary">지금
+                        시작하기</a>
             </div>
-        </div>
+
     </section>
 
     <!-- Culture Section -->
@@ -1398,7 +1369,7 @@
             <h2>✨ Inviit's 팀 컬처</h2>
             <p>"내가 기획하고 개발한 서비스가 수많은 사람들의 일상 속에 쓰인다!"</p>
             <p>이 경험을 inviit 팀에서 함께해보세요.</p>
-            
+
             <div class="culture-list">
                 <div class="culture-item">
                     <h3>빠른 피드백</h3>
@@ -1423,12 +1394,12 @@
                 <h2 class="section-title">✨ Inviit's Co-Founder</h2>
                 <p>WHO Makes inviit?</p>
             </div>
-            
+
             <div class="team-values">
                 <p>저희는 창업 연합 동아리를 통해 2024년부터 만나 정기적인 모임과 프로젝트를 함께하며 '비즈니스 그 이상'의 청년 창업팀 문화를 만들어가고 있습니다.</p>
                 <h3>서로 성장하고 이끌어주는 팀, inviit의 문화입니다.</h3>
             </div>
-            
+
             <div class="team-members">
                 <div class="team-member">
                     <h3>KDH</h3>
@@ -1436,7 +1407,9 @@
                     <p><strong>학력 :</strong> 전북대학교 의과대학 재학</p>
                     <p><strong>어떤 일을 하나요 ?</strong></p>
                     <ul>
-                        <li>앱·웹 서비스의 기능 기획부터 서비스 운영 전략 수립까지 <strong>Inviit</strong>의 전반적인 성장 로드맵을 설계하고 실행</li>
+                        <li>앱·웹 서비스의 기능 기획부터 서비스 운영 전략 수립까지
+                            <strong>Inviit</strong>의 전반적인 성장 로드맵을 설계하고 실행
+                        </li>
                         <li>마케팅 기획, 고객 미팅, 파트너사 협업, 인사·팀 빌딩 등 스타트업 운영에 필요한 모든 과정을 리드하며 팀을 이끄는 CEO</li>
                         <li>사업계획서 작성, IR 피치덱 제작, 투자 유치 준비 등 비즈니스 확장을 위한 전략적 문서화 및 대외 커뮤니케이션 업무를 담당</li>
                     </ul>
@@ -1444,7 +1417,8 @@
                 <div class="team-member">
                     <h3>CSY</h3>
                     <h4>프론트엔드 개발자 | CTO</h4>
-                    <p><strong>학력 :</strong> 이화여자대학교 컴퓨터공학 & 컴퓨터의학 재학</p>
+                    <p><strong>학력 :</strong> 이화여자대학교 컴퓨터공학 & 컴퓨터의학 재학
+                    </p>
                     <p><strong>어떤 일을 하나요?</strong></p>
                     <ul>
                         <li>서비스의 전체 사용자 흐름을 기획하고, 실제로 iOS/Android 환경에서 작동하는 앱으로 구현</li>
@@ -1458,13 +1432,15 @@
                     <p><strong>어떤 일을 하나요?</strong></p>
                     <ul>
                         <li>웹과 앱 기능의 기획부터 프론트엔드 개발, 백엔드 구현, 데이터베이스 구축까지 전반적인 기술 개발을 담당</li>
-                        <li>서비스가 원활하게 작동할 수 있도록 전체 시스템을 설계하고 구현하는 풀스택 개발자</li>
+                        <li>서비스가 원활하게 작동할 수 있도록 전체 시스템을 설계하고 구현하는 풀스택 개발자
+                        </li>
                     </ul>
                 </div>
                 <div class="team-member">
                     <h3>OSY</h3>
                     <h4>AI·데이터 전략 기획자 | CIO</h4>
-                    <p><strong>학력 :</strong> 국민대학교 AI빅데이터융합경영학과&인공지능학부 재학</p>
+                    <p><strong>학력 :</strong> 국민대학교 AI빅데이터융합경영학과&인공지능학부 재학
+                    </p>
                     <p><strong>어떤 일을 하나요?</strong></p>
                     <ul>
                         <li>사용자 데이터 분석, AI 기능 기획 등 Inviit 서비스의 기술적 확장성과 데이터 활용 방안을 설계</li>
@@ -1542,4 +1518,5 @@
         </div>
     </footer>
 </body>
+
 </html>
