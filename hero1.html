@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inviit | 특별한 초대, 인빗</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800&display=swap');
+         :root {
+            --primary-bg: #0a0a0f;
+            --text-white: #ffffff;
+            --text-gray: rgba(255, 255, 255, 0.7);
+            --blue: #2e7bff;
+            --purple: #9747ff;
+            --pink: #d945ff;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --border-light: rgba(255, 255, 255, 0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        /* Header */
+        
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1.5rem 2rem;
+            background-color: rgba(10, 10, 15, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-white);
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--text-white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--blue);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.8rem;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-dark {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-white);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+        }
+        
+        .btn-dark:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        /* Modern Hero Section */
+        
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-bg);
+        }
+        /* Orbit Path */
+        
+        .orbit-path {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .orbit-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.05) 15%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.05) 85%, transparent 100%);
+            opacity: 0.6;
+        }
+        
+        .orbit-dots {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 5%;
+        }
+        
+        .orbit-dot {
+            width: 6px;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            margin-top: -3px;
+        }
+        
+        .orbit-dot.active {
+            background-color: var(--text-white);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        /* 3D Blobs */
+        
+        .blob-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.85;
+            filter: blur(4px);
+            animation: floatBlob var(--duration, 20s) ease-in-out infinite alternate;
+            animation-delay: var(--delay, 0s);
+            box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.2);
+            background: radial-gradient(circle at 30% 30%, var(--color-light) 0%, var(--color) 70%);
+        }
+        
+        @keyframes floatBlob {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            100% {
+                transform: translate(var(--translate-x, 30px), var(--translate-y, 30px)) rotate(var(--rotate, 10deg));
+            }
+        }
+        /* Purple blob */
+        
+        .blob:nth-child(1) {
+            --size: 250px;
+            --color: #9747ff;
+            --color-light: #b980ff;
+            --duration: 25s;
+            --delay: 0s;
+            --translate-x: 20px;
+            --translate-y: -30px;
+            --rotate: 15deg;
+            top: 45%;
+            left: 25%;
+            width: var(--size);
+            height: var(--size);
+        }
+        /* Blue blob */
+        
+        .blob:nth-child(2) {
+            --size: 280px;
+            --color: #2e7bff;
+            --color-light: #5a9aff;
+            --duration: 30s;
+            --delay: 5s;
+            --translate-x: -25px;
+            --translate-y: 20px;
+            --rotate: -10deg;
+            top: 40%;
+            right: 25%;
+            width: var(--size);
+            height: var(--size);
+        }
+        /* Sparkle Particles */
+        
+        .particle-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: var(--size, 2px);
+            height: var(--size, 2px);
+            background-color: var(--text-white);
+            border-radius: 50%;
+            opacity: 0;
+            box-shadow: 0 0 var(--glow-size, 10px) var(--glow-color, rgba(255, 255, 255, 0.7));
+            animation: sparkle var(--duration, 3s) ease-in-out infinite;
+            animation-delay: var(--delay, 0s);
+        }
+        
+        @keyframes sparkle {
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0.2);
+            }
+            50% {
+                opacity: var(--opacity, 0.8);
+                transform: scale(1);
+            }
+        }
+        /* Generate particles with different properties */
+        
+        .particle:nth-child(1) {
+            --size: 3px;
+            --opacity: 1;
+            --duration: 2.5s;
+            --delay: 0.1s;
+            --glow-size: 12px;
+            --glow-color: rgba(255, 255, 255, 0.7);
+            top: 20%;
+            left: 15%;
+        }
+        
+        .particle:nth-child(2) {
+            --size: 2px;
+            --opacity: 0.8;
+            --duration: 3s;
+            --delay: 0.5s;
+            --glow-size: 8px;
+            --glow-color: rgba(46, 123, 255, 0.7);
+            top: 35%;
+            left: 25%;
+        }
+        
+        .particle:nth-child(3) {
+            --size: 4px;
+            --opacity: 0.9;
+            --duration: 3.5s;
+            --delay: 1s;
+            --glow-size: 15px;
+            --glow-color: rgba(151, 71, 255, 0.7);
+            top: 15%;
+            left: 40%;
+        }
+        
+        .particle:nth-child(4) {
+            --size: 3px;
+            --opacity: 1;
+            --duration: 2.8s;
+            --delay: 0.3s;
+            --glow-size: 12px;
+            --glow-color: rgba(217, 69, 255, 0.7);
+            top: 25%;
+            left: 65%;
+        }
+        
+        .particle:nth-child(5) {
+            --size: 2px;
+            --opacity: 0.8;
+            --duration: 3.2s;
+            --delay: 0.8s;
+            --glow-size: 8px;
+            --glow-color: rgba(255, 255, 255, 0.7);
+            top: 15%;
+            left: 80%;
+        }
+        
+        .particle:nth-child(6) {
+            --size: 3px;
+            --opacity: 0.9;
+            --duration: 3s;
+            --delay: 1.2s;
+            --glow-size: 10px;
+            --glow-color: rgba(46, 123, 255, 0.7);
+            top: 50%;
+            left: 10%;
+        }
+        
+        .particle:nth-child(7) {
+            --size: 4px;
+            --opacity: 1;
+            --duration: 3.8s;
+            --delay: 0.7s;
+            --glow-size: 15px;
+            --glow-color: rgba(151, 71, 255, 0.7);
+            top: 65%;
+            left: 20%;
+        }
+        
+        .particle:nth-child(8) {
+            --size: 2px;
+            --opacity: 0.8;
+            --duration: 2.5s;
+            --delay: 1.5s;
+            --glow-size: 8px;
+            --glow-color: rgba(217, 69, 255, 0.7);
+            top: 45%;
+            left: 40%;
+        }
+        
+        .particle:nth-child(9) {
+            --size: 3px;
+            --opacity: 0.9;
+            --duration: 3.2s;
+            --delay: 0.2s;
+            --glow-size: 12px;
+            --glow-color: rgba(255, 255, 255, 0.7);
+            top: 70%;
+            left: 60%;
+        }
+        
+        .particle:nth-child(10) {
+            --size: 2px;
+            --opacity: 1;
+            --duration: 2.8s;
+            --delay: 0.9s;
+            --glow-size: 10px;
+            --glow-color: rgba(46, 123, 255, 0.7);
+            top: 55%;
+            left: 85%;
+        }
+        
+        .particle:nth-child(11) {
+            --size: 4px;
+            --opacity: 0.9;
+            --duration: 3.5s;
+            --delay: 1.3s;
+            --glow-size: 15px;
+            --glow-color: rgba(151, 71, 255, 0.7);
+            top: 80%;
+            left: 30%;
+        }
+        
+        .particle:nth-child(12) {
+            --size: 3px;
+            --opacity: 0.8;
+            --duration: 3s;
+            --delay: 0.5s;
+            --glow-size: 12px;
+            --glow-color: rgba(217, 69, 255, 0.7);
+            top: 85%;
+            left: 70%;
+        }
+        
+        .particle:nth-child(13) {
+            --size: 2px;
+            --opacity: 1;
+            --duration: 2.5s;
+            --delay: 1.8s;
+            --glow-size: 8px;
+            --glow-color: rgba(255, 255, 255, 0.7);
+            top: 10%;
+            left: 55%;
+        }
+        
+        .particle:nth-child(14) {
+            --size: 3px;
+            --opacity: 0.9;
+            --duration: 3.2s;
+            --delay: 0.4s;
+            --glow-size: 10px;
+            --glow-color: rgba(46, 123, 255, 0.7);
+            top: 30%;
+            left: 90%;
+        }
+        
+        .particle:nth-child(15) {
+            --size: 4px;
+            --opacity: 0.8;
+            --duration: 3.8s;
+            --delay: 1.1s;
+            --glow-size: 15px;
+            --glow-color: rgba(151, 71, 255, 0.7);
+            top: 40%;
+            left: 15%;
+        }
+        
+        .particle:nth-child(16) {
+            --size: 2px;
+            --opacity: 1;
+            --duration: 2.8s;
+            --delay: 0.6s;
+            --glow-size: 8px;
+            --glow-color: rgba(217, 69, 255, 0.7);
+            top: 60%;
+            left: 45%;
+        }
+        
+        .particle:nth-child(17) {
+            --size: 3px;
+            --opacity: 0.9;
+            --duration: 3s;
+            --delay: 1.7s;
+            --glow-size: 12px;
+            --glow-color: rgba(255, 255, 255, 0.7);
+            top: 75%;
+            left: 10%;
+        }
+        
+        .particle:nth-child(18) {
+            --size: 4px;
+            --opacity: 0.8;
+            --duration: 3.5s;
+            --delay: 0.3s;
+            --glow-size: 15px;
+            --glow-color: rgba(46, 123, 255, 0.7);
+            top: 5%;
+            left: 35%;
+        }
+        
+        .particle:nth-child(19) {
+            --size: 2px;
+            --opacity: 1;
+            --duration: 2.5s;
+            --delay: 1.4s;
+            --glow-size: 8px;
+            --glow-color: rgba(151, 71, 255, 0.7);
+            top: 20%;
+            left: 75%;
+        }
+        
+        .particle:nth-child(20) {
+            --size: 3px;
+            --opacity: 0.9;
+            --duration: 3.2s;
+            --delay: 0.8s;
+            --glow-size: 12px;
+            --glow-color: rgba(217, 69, 255, 0.7);
+            top: 90%;
+            left: 50%;
+        }
+        /* Content Section */
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 2rem;
+            max-width: 900px;
+        }
+        
+        .hero-title {
+            font-size: 6rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            color: var(--text-white);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--text-gray);
+            margin-bottom: 2.5rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-white);
+            background: linear-gradient(135deg, rgba(46, 123, 255, 0.9), rgba(151, 71, 255, 0.9));
+            border: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(151, 71, 255, 0.9), rgba(217, 69, 255, 0.9));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(46, 123, 255, 0.3);
+        }
+        
+        .cta-button:hover::before {
+            opacity: 1;
+        }
+        /* Gradient Text Effect */
+        
+        .gradient-text {
+            background: linear-gradient(to right, #2e7bff, #9747ff, #d945ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            position: relative;
+        }
+        /* Responsive Design */
+        
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 5rem;
+            }
+            .blob:nth-child(1) {
+                --size: 200px;
+            }
+            .blob:nth-child(2) {
+                --size: 220px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            .blob:nth-child(1) {
+                --size: 180px;
+                left: 15%;
+            }
+            .blob:nth-child(2) {
+                --size: 200px;
+                right: 15%;
+            }
+            .cta-button {
+                padding: 1rem 2.5rem;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            .blob:nth-child(1) {
+                --size: 150px;
+                left: 10%;
+            }
+            .blob:nth-child(2) {
+                --size: 170px;
+                right: 10%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">inviit</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#why">WHY Inviit</a></li>
+                    <li><a href="#how">HOW</a></li>
+                    <li><a href="#app">서비스</a></li>
+                    <li><a href="#culture">CULTURE</a></li>
+                    <li><a href="#team">TEAM</a></li>
+                    <li><a href="#" class="btn btn-dark">시작하기</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Modern 3D Hero Section -->
+    <section class="hero">
+        <!-- Orbit Path -->
+        <div class="orbit-path">
+            <div class="orbit-line"></div>
+            <div class="orbit-dots">
+                <div class="orbit-dot"></div>
+                <div class="orbit-dot"></div>
+                <div class="orbit-dot active"></div>
+                <div class="orbit-dot"></div>
+                <div class="orbit-dot"></div>
+                <div class="orbit-dot"></div>
+                <div class="orbit-dot"></div>
+            </div>
+        </div>
+
+        <!-- 3D Blobs -->
+        <div class="blob-container">
+            <div class="blob"></div>
+            <div class="blob"></div>
+        </div>
+
+        <!-- Sparkle Particles -->
+        <div class="particle-container">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <h1 class="hero-title">특별한 <span class="gradient-text">초대</span>, Inviit.</h1>
+            <p class="hero-subtitle">파티와 모임을 더 특별하게 만들어주는 서비스</p>
+            <a href="#" class="cta-button">지금 시작하기</a>
+        </div>
+    </section>
+</body>
+
+</html>
