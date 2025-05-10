@@ -14,8 +14,6 @@
             --blue: #2e7bff;
             --purple: #9747ff;
             --pink: #d945ff;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --border-light: rgba(255, 255, 255, 0.08);
         }
         
         * {
@@ -39,10 +37,10 @@
             top: 0;
             z-index: 1000;
             padding: 1.5rem 2rem;
-            background-color: rgba(10, 10, 15, 0.4);
+            background-color: rgba(10, 10, 15, 0.3);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-light);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .header-content {
@@ -54,10 +52,8 @@
         }
         
         .logo {
-            display: flex;
-            align-items: center;
-            font-weight: 700;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 600;
             text-decoration: none;
             color: var(--text-white);
             letter-spacing: 1px;
@@ -73,7 +69,7 @@
         .nav-links a {
             color: var(--text-white);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 0.95rem;
             transition: all 0.3s ease;
             letter-spacing: 0.5px;
@@ -94,17 +90,15 @@
             letter-spacing: 0.5px;
         }
         
-        .btn-dark {
-            background-color: rgba(255, 255, 255, 0.1);
+        .btn-outline {
+            background-color: transparent;
             color: var(--text-white);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
-        .btn-dark:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        .btn-outline:hover {
+            border-color: var(--text-white);
+            background-color: rgba(255, 255, 255, 0.05);
         }
         /* Modern Hero Section */
         
@@ -118,363 +112,269 @@
             justify-content: center;
             background-color: var(--primary-bg);
         }
-        /* Orbit Path */
+        /* 3D Glass Elements */
         
-        .orbit-path {
+        .glass-container {
             position: absolute;
             width: 100%;
             height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-        
-        .orbit-line {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.05) 15%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.05) 85%, transparent 100%);
-            opacity: 0.6;
-        }
-        
-        .orbit-dots {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 5%;
-        }
-        
-        .orbit-dot {
-            width: 6px;
-            height: 6px;
-            background-color: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            margin-top: -3px;
-        }
-        
-        .orbit-dot.active {
-            background-color: var(--text-white);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-        /* 3D Blobs */
-        
-        .blob-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
+            perspective: 1200px;
             z-index: 2;
-            pointer-events: none;
         }
         
-        .blob {
+        .glass-element {
             position: absolute;
-            border-radius: 50%;
-            opacity: 0.85;
-            filter: blur(4px);
-            animation: floatBlob var(--duration, 20s) ease-in-out infinite alternate;
-            animation-delay: var(--delay, 0s);
-            box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.2);
-            background: radial-gradient(circle at 30% 30%, var(--color-light) 0%, var(--color) 70%);
+            transform-style: preserve-3d;
+            animation: rotateGlass 30s linear infinite;
+            opacity: 0.7;
         }
         
-        @keyframes floatBlob {
+        @keyframes rotateGlass {
             0% {
-                transform: translate(0, 0) rotate(0deg);
+                transform: rotateY(0deg) rotateX(10deg);
             }
             100% {
-                transform: translate(var(--translate-x, 30px), var(--translate-y, 30px)) rotate(var(--rotate, 10deg));
+                transform: rotateY(360deg) rotateX(10deg);
             }
         }
-        /* Purple blob */
         
-        .blob:nth-child(1) {
-            --size: 250px;
-            --color: #9747ff;
-            --color-light: #b980ff;
-            --duration: 25s;
-            --delay: 0s;
-            --translate-x: 20px;
-            --translate-y: -30px;
-            --rotate: 15deg;
-            top: 45%;
-            left: 25%;
-            width: var(--size);
-            height: var(--size);
+        .glass-cube {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            top: calc(50% - 150px);
+            left: calc(50% - 150px);
+            transform-style: preserve-3d;
+            animation: rotateCube 25s linear infinite;
         }
-        /* Blue blob */
         
-        .blob:nth-child(2) {
-            --size: 280px;
-            --color: #2e7bff;
-            --color-light: #5a9aff;
-            --duration: 30s;
-            --delay: 5s;
-            --translate-x: -25px;
-            --translate-y: 20px;
-            --rotate: -10deg;
-            top: 40%;
-            right: 25%;
-            width: var(--size);
-            height: var(--size);
+        @keyframes rotateCube {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+            }
+            100% {
+                transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+            }
         }
-        /* Sparkle Particles */
         
-        .particle-container {
+        .cube-face {
             position: absolute;
             width: 100%;
             height: 100%;
-            z-index: 3;
-            pointer-events: none;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            box-shadow: 0 0 40px rgba(151, 71, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
         
-        .particle {
+        .cube-face:nth-child(1) {
+            transform: translateZ(150px);
+            background: linear-gradient(135deg, rgba(46, 123, 255, 0.1), rgba(255, 255, 255, 0.03));
+        }
+        
+        .cube-face:nth-child(2) {
+            transform: rotateY(180deg) translateZ(150px);
+            background: linear-gradient(135deg, rgba(151, 71, 255, 0.1), rgba(255, 255, 255, 0.03));
+        }
+        
+        .cube-face:nth-child(3) {
+            transform: rotateY(90deg) translateZ(150px);
+            background: linear-gradient(135deg, rgba(217, 69, 255, 0.1), rgba(255, 255, 255, 0.03));
+        }
+        
+        .cube-face:nth-child(4) {
+            transform: rotateY(-90deg) translateZ(150px);
+            background: linear-gradient(135deg, rgba(46, 123, 255, 0.1), rgba(255, 255, 255, 0.03));
+        }
+        
+        .cube-face:nth-child(5) {
+            transform: rotateX(90deg) translateZ(150px);
+            background: linear-gradient(135deg, rgba(151, 71, 255, 0.1), rgba(255, 255, 255, 0.03));
+        }
+        
+        .cube-face:nth-child(6) {
+            transform: rotateX(-90deg) translateZ(150px);
+            background: linear-gradient(135deg, rgba(217, 69, 255, 0.1), rgba(255, 255, 255, 0.03));
+        }
+        /* 3D Ribbons */
+        
+        .ribbon-container {
             position: absolute;
-            width: var(--size, 2px);
-            height: var(--size, 2px);
-            background-color: var(--text-white);
-            border-radius: 50%;
-            opacity: 0;
-            box-shadow: 0 0 var(--glow-size, 10px) var(--glow-color, rgba(255, 255, 255, 0.7));
-            animation: sparkle var(--duration, 3s) ease-in-out infinite;
+            width: 100%;
+            height: 100%;
+            perspective: 1500px;
+            transform-style: preserve-3d;
+            z-index: 1;
+        }
+        
+        .ribbon {
+            position: absolute;
+            height: 60px;
+            background: var(--ribbon-color, rgba(255, 255, 255, 0.1));
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-white);
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            box-shadow: 0 0 30px rgba(var(--ribbon-glow-color, 255, 255, 255), 0.2);
+            transform-style: preserve-3d;
+            animation: floatRibbon var(--duration, 20s) linear infinite;
+            transform-origin: center;
             animation-delay: var(--delay, 0s);
         }
         
-        @keyframes sparkle {
-            0%,
-            100% {
-                opacity: 0;
-                transform: scale(0.2);
+        @keyframes floatRibbon {
+            0% {
+                transform: rotateX(var(--rotateX-start, 0deg)) rotateY(var(--rotateY-start, 0deg)) rotateZ(var(--rotateZ-start, 0deg)) translateZ(var(--translateZ-start, 0px));
             }
             50% {
-                opacity: var(--opacity, 0.8);
-                transform: scale(1);
+                transform: rotateX(var(--rotateX-mid, 180deg)) rotateY(var(--rotateY-mid, 180deg)) rotateZ(var(--rotateZ-mid, 180deg)) translateZ(var(--translateZ-mid, 50px));
+            }
+            100% {
+                transform: rotateX(var(--rotateX-end, 360deg)) rotateY(var(--rotateY-end, 360deg)) rotateZ(var(--rotateZ-end, 360deg)) translateZ(var(--translateZ-end, 0px));
             }
         }
-        /* Generate particles with different properties */
+        /* Purple Ribbon */
         
-        .particle:nth-child(1) {
-            --size: 3px;
-            --opacity: 1;
-            --duration: 2.5s;
-            --delay: 0.1s;
-            --glow-size: 12px;
-            --glow-color: rgba(255, 255, 255, 0.7);
-            top: 20%;
-            left: 15%;
-        }
-        
-        .particle:nth-child(2) {
-            --size: 2px;
-            --opacity: 0.8;
-            --duration: 3s;
-            --delay: 0.5s;
-            --glow-size: 8px;
-            --glow-color: rgba(46, 123, 255, 0.7);
+        .ribbon:nth-child(1) {
+            --ribbon-color: rgba(151, 71, 255, 0.8);
+            --ribbon-glow-color: 151, 71, 255;
+            --duration: 30s;
+            --delay: 0s;
+            --rotateX-start: 10deg;
+            --rotateY-start: 0deg;
+            --rotateZ-start: 5deg;
+            --translateZ-start: 0px;
+            --rotateX-mid: 15deg;
+            --rotateY-mid: 180deg;
+            --rotateZ-mid: -5deg;
+            --translateZ-mid: 30px;
+            --rotateX-end: 10deg;
+            --rotateY-end: 360deg;
+            --rotateZ-end: 5deg;
+            --translateZ-end: 0px;
+            width: 600px;
             top: 35%;
-            left: 25%;
+            left: calc(50% - 300px);
+            text-align: center;
+            padding: 0 30px;
         }
+        /* Blue Ribbon */
         
-        .particle:nth-child(3) {
-            --size: 4px;
-            --opacity: 0.9;
-            --duration: 3.5s;
-            --delay: 1s;
-            --glow-size: 15px;
-            --glow-color: rgba(151, 71, 255, 0.7);
-            top: 15%;
-            left: 40%;
-        }
-        
-        .particle:nth-child(4) {
-            --size: 3px;
-            --opacity: 1;
-            --duration: 2.8s;
-            --delay: 0.3s;
-            --glow-size: 12px;
-            --glow-color: rgba(217, 69, 255, 0.7);
-            top: 25%;
-            left: 65%;
-        }
-        
-        .particle:nth-child(5) {
-            --size: 2px;
-            --opacity: 0.8;
-            --duration: 3.2s;
-            --delay: 0.8s;
-            --glow-size: 8px;
-            --glow-color: rgba(255, 255, 255, 0.7);
-            top: 15%;
-            left: 80%;
-        }
-        
-        .particle:nth-child(6) {
-            --size: 3px;
-            --opacity: 0.9;
-            --duration: 3s;
-            --delay: 1.2s;
-            --glow-size: 10px;
-            --glow-color: rgba(46, 123, 255, 0.7);
+        .ribbon:nth-child(2) {
+            --ribbon-color: rgba(46, 123, 255, 0.8);
+            --ribbon-glow-color: 46, 123, 255;
+            --duration: 35s;
+            --delay: 4s;
+            --rotateX-start: -20deg;
+            --rotateY-start: 10deg;
+            --rotateZ-start: -10deg;
+            --translateZ-start: 20px;
+            --rotateX-mid: -30deg;
+            --rotateY-mid: 190deg;
+            --rotateZ-mid: 5deg;
+            --translateZ-mid: 50px;
+            --rotateX-end: -20deg;
+            --rotateY-end: 370deg;
+            --rotateZ-end: -10deg;
+            --translateZ-end: 20px;
+            width: 650px;
             top: 50%;
-            left: 10%;
+            left: calc(50% - 325px);
+            text-align: center;
+            padding: 0 30px;
         }
+        /* Gray Ribbon */
         
-        .particle:nth-child(7) {
-            --size: 4px;
-            --opacity: 1;
-            --duration: 3.8s;
-            --delay: 0.7s;
-            --glow-size: 15px;
-            --glow-color: rgba(151, 71, 255, 0.7);
-            top: 65%;
-            left: 20%;
-        }
-        
-        .particle:nth-child(8) {
-            --size: 2px;
-            --opacity: 0.8;
-            --duration: 2.5s;
-            --delay: 1.5s;
-            --glow-size: 8px;
-            --glow-color: rgba(217, 69, 255, 0.7);
-            top: 45%;
-            left: 40%;
-        }
-        
-        .particle:nth-child(9) {
-            --size: 3px;
-            --opacity: 0.9;
-            --duration: 3.2s;
-            --delay: 0.2s;
-            --glow-size: 12px;
-            --glow-color: rgba(255, 255, 255, 0.7);
-            top: 70%;
-            left: 60%;
-        }
-        
-        .particle:nth-child(10) {
-            --size: 2px;
-            --opacity: 1;
-            --duration: 2.8s;
-            --delay: 0.9s;
-            --glow-size: 10px;
-            --glow-color: rgba(46, 123, 255, 0.7);
-            top: 55%;
-            left: 85%;
-        }
-        
-        .particle:nth-child(11) {
-            --size: 4px;
-            --opacity: 0.9;
-            --duration: 3.5s;
-            --delay: 1.3s;
-            --glow-size: 15px;
-            --glow-color: rgba(151, 71, 255, 0.7);
-            top: 80%;
-            left: 30%;
-        }
-        
-        .particle:nth-child(12) {
-            --size: 3px;
-            --opacity: 0.8;
-            --duration: 3s;
-            --delay: 0.5s;
-            --glow-size: 12px;
-            --glow-color: rgba(217, 69, 255, 0.7);
-            top: 85%;
-            left: 70%;
-        }
-        
-        .particle:nth-child(13) {
-            --size: 2px;
-            --opacity: 1;
-            --duration: 2.5s;
-            --delay: 1.8s;
-            --glow-size: 8px;
-            --glow-color: rgba(255, 255, 255, 0.7);
-            top: 10%;
-            left: 55%;
-        }
-        
-        .particle:nth-child(14) {
-            --size: 3px;
-            --opacity: 0.9;
-            --duration: 3.2s;
-            --delay: 0.4s;
-            --glow-size: 10px;
-            --glow-color: rgba(46, 123, 255, 0.7);
-            top: 30%;
-            left: 90%;
-        }
-        
-        .particle:nth-child(15) {
-            --size: 4px;
-            --opacity: 0.8;
-            --duration: 3.8s;
-            --delay: 1.1s;
-            --glow-size: 15px;
-            --glow-color: rgba(151, 71, 255, 0.7);
-            top: 40%;
-            left: 15%;
-        }
-        
-        .particle:nth-child(16) {
-            --size: 2px;
-            --opacity: 1;
-            --duration: 2.8s;
-            --delay: 0.6s;
-            --glow-size: 8px;
-            --glow-color: rgba(217, 69, 255, 0.7);
+        .ribbon:nth-child(3) {
+            --ribbon-color: rgba(255, 255, 255, 0.15);
+            --ribbon-glow-color: 255, 255, 255;
+            --duration: 28s;
+            --delay: 2s;
+            --rotateX-start: 25deg;
+            --rotateY-start: -20deg;
+            --rotateZ-start: 15deg;
+            --translateZ-start: -30px;
+            --rotateX-mid: 35deg;
+            --rotateY-mid: 160deg;
+            --rotateZ-mid: -10deg;
+            --translateZ-mid: 0px;
+            --rotateX-end: 25deg;
+            --rotateY-end: 340deg;
+            --rotateZ-end: 15deg;
+            --translateZ-end: -30px;
+            width: 550px;
             top: 60%;
-            left: 45%;
+            left: calc(50% - 275px);
+            text-align: center;
+            padding: 0 30px;
+        }
+        /* Star/Dot Decorations */
+        
+        .ribbon span {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
         }
         
-        .particle:nth-child(17) {
-            --size: 3px;
-            --opacity: 0.9;
-            --duration: 3s;
-            --delay: 1.7s;
-            --glow-size: 12px;
-            --glow-color: rgba(255, 255, 255, 0.7);
-            top: 75%;
-            left: 10%;
+        .ribbon .star {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            position: relative;
         }
         
-        .particle:nth-child(18) {
-            --size: 4px;
-            --opacity: 0.8;
-            --duration: 3.5s;
-            --delay: 0.3s;
-            --glow-size: 15px;
-            --glow-color: rgba(46, 123, 255, 0.7);
-            top: 5%;
-            left: 35%;
-        }
-        
-        .particle:nth-child(19) {
-            --size: 2px;
-            --opacity: 1;
-            --duration: 2.5s;
-            --delay: 1.4s;
-            --glow-size: 8px;
-            --glow-color: rgba(151, 71, 255, 0.7);
-            top: 20%;
-            left: 75%;
-        }
-        
-        .particle:nth-child(20) {
-            --size: 3px;
-            --opacity: 0.9;
-            --duration: 3.2s;
-            --delay: 0.8s;
-            --glow-size: 12px;
-            --glow-color: rgba(217, 69, 255, 0.7);
-            top: 90%;
+        .ribbon .star::before {
+            content: '★';
+            position: absolute;
+            font-size: 10px;
+            top: 50%;
             left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .ribbon .arrow {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            position: relative;
+        }
+        
+        .ribbon .arrow::before {
+            content: '→';
+            position: absolute;
+            font-size: 12px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        /* Glass Reflections */
+        
+        .glass-reflection {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.05) 20%, rgba(255, 255, 255, 0.1) 40%, rgba(255, 255, 255, 0.05) 60%, rgba(255, 255, 255, 0) 80%);
+            z-index: 3;
+            pointer-events: none;
+            animation: moveReflection 8s linear infinite;
+        }
+        
+        @keyframes moveReflection {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
         }
         /* Content Section */
         
@@ -487,80 +387,63 @@
         }
         
         .hero-title {
-            font-size: 6rem;
+            font-size: 9rem;
             font-weight: 800;
-            line-height: 1.1;
+            line-height: 1;
             margin-bottom: 1.5rem;
             letter-spacing: -0.02em;
             color: var(--text-white);
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+            text-transform: lowercase;
         }
         
         .hero-subtitle {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 300;
             color: var(--text-gray);
             margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .cta-button {
             display: inline-block;
-            padding: 1.2rem 3rem;
-            font-size: 1.1rem;
-            font-weight: 600;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 500;
             color: var(--text-white);
-            background: linear-gradient(135deg, rgba(46, 123, 255, 0.9), rgba(151, 71, 255, 0.9));
-            border: none;
-            border-radius: 50px;
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
             transition: all 0.3s ease;
             text-decoration: none;
             letter-spacing: 0.5px;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-        
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(151, 71, 255, 0.9), rgba(217, 69, 255, 0.9));
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
         }
         
         .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(46, 123, 255, 0.3);
-        }
-        
-        .cta-button:hover::before {
-            opacity: 1;
-        }
-        /* Gradient Text Effect */
-        
-        .gradient-text {
-            background: linear-gradient(to right, #2e7bff, #9747ff, #d945ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
-            position: relative;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
         }
         /* Responsive Design */
         
         @media (max-width: 992px) {
             .hero-title {
-                font-size: 5rem;
+                font-size: 7rem;
             }
-            .blob:nth-child(1) {
-                --size: 200px;
+            .ribbon:nth-child(1) {
+                width: 500px;
+                left: calc(50% - 250px);
             }
-            .blob:nth-child(2) {
-                --size: 220px;
+            .ribbon:nth-child(2) {
+                width: 550px;
+                left: calc(50% - 275px);
+            }
+            .ribbon:nth-child(3) {
+                width: 450px;
+                left: calc(50% - 225px);
             }
         }
         
@@ -569,39 +452,43 @@
                 display: none;
             }
             .hero-title {
-                font-size: 3.5rem;
+                font-size: 4.5rem;
             }
             .hero-subtitle {
                 font-size: 1.2rem;
             }
-            .blob:nth-child(1) {
-                --size: 180px;
-                left: 15%;
+            .ribbon:nth-child(1) {
+                width: 400px;
+                left: calc(50% - 200px);
             }
-            .blob:nth-child(2) {
-                --size: 200px;
-                right: 15%;
+            .ribbon:nth-child(2) {
+                width: 450px;
+                left: calc(50% - 225px);
             }
-            .cta-button {
-                padding: 1rem 2.5rem;
-                font-size: 1rem;
+            .ribbon:nth-child(3) {
+                width: 350px;
+                left: calc(50% - 175px);
             }
         }
         
         @media (max-width: 576px) {
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 3.5rem;
             }
             .hero-subtitle {
                 font-size: 1rem;
             }
-            .blob:nth-child(1) {
-                --size: 150px;
-                left: 10%;
+            .ribbon:nth-child(1) {
+                width: 300px;
+                left: calc(50% - 150px);
             }
-            .blob:nth-child(2) {
-                --size: 170px;
-                right: 10%;
+            .ribbon:nth-child(2) {
+                width: 350px;
+                left: calc(50% - 175px);
+            }
+            .ribbon:nth-child(3) {
+                width: 250px;
+                left: calc(50% - 125px);
             }
         }
     </style>
@@ -619,7 +506,7 @@
                     <li><a href="#app">서비스</a></li>
                     <li><a href="#culture">CULTURE</a></li>
                     <li><a href="#team">TEAM</a></li>
-                    <li><a href="#" class="btn btn-dark">시작하기</a></li>
+                    <li><a href="#" class="btn btn-outline">시작하기</a></li>
                 </ul>
             </nav>
         </div>
@@ -627,53 +514,37 @@
 
     <!-- Modern 3D Hero Section -->
     <section class="hero">
-        <!-- Orbit Path -->
-        <div class="orbit-path">
-            <div class="orbit-line"></div>
-            <div class="orbit-dots">
-                <div class="orbit-dot"></div>
-                <div class="orbit-dot"></div>
-                <div class="orbit-dot active"></div>
-                <div class="orbit-dot"></div>
-                <div class="orbit-dot"></div>
-                <div class="orbit-dot"></div>
-                <div class="orbit-dot"></div>
+        <!-- 3D Glass Cube -->
+        <div class="glass-container">
+            <div class="glass-cube">
+                <div class="cube-face"></div>
+                <div class="cube-face"></div>
+                <div class="cube-face"></div>
+                <div class="cube-face"></div>
+                <div class="cube-face"></div>
+                <div class="cube-face"></div>
             </div>
         </div>
 
-        <!-- 3D Blobs -->
-        <div class="blob-container">
-            <div class="blob"></div>
-            <div class="blob"></div>
+        <!-- 3D Ribbons -->
+        <div class="ribbon-container">
+            <div class="ribbon">
+                <span>Special Invitation <div class="star"></div> Create Moments <div class="arrow"></div> Celebrate Together <div class="star"></div> Special Invitation</span>
+            </div>
+            <div class="ribbon">
+                <span>Easy & Beautiful <div class="arrow"></div> Share Memories <div class="star"></div> Connect People <div class="arrow"></div> Easy & Beautiful</span>
+            </div>
+            <div class="ribbon">
+                <span>Your Party <div class="star"></div> Your Style <div class="arrow"></div> Your Memories <div class="star"></div> Your Party</span>
+            </div>
         </div>
 
-        <!-- Sparkle Particles -->
-        <div class="particle-container">
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-        </div>
+        <!-- Glass Reflection Effect -->
+        <div class="glass-reflection"></div>
 
         <!-- Hero Content -->
         <div class="hero-content">
-            <h1 class="hero-title">특별한 <span class="gradient-text">초대</span>, Inviit.</h1>
+            <h1 class="hero-title">inviit</h1>
             <p class="hero-subtitle">파티와 모임을 더 특별하게 만들어주는 서비스</p>
             <a href="#" class="cta-button">지금 시작하기</a>
         </div>
