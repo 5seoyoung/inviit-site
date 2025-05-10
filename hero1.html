@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inviit | 특별한 초대, 인빗</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800&display=swap');
-         :root {
+        
+        :root {
             --primary-bg: #0a0a0f;
             --text-white: #ffffff;
             --text-gray: rgba(255, 255, 255, 0.7);
@@ -29,8 +29,8 @@
             overflow-x: hidden;
             line-height: 1.6;
         }
-        /* Header */
         
+        /* Header */
         header {
             position: fixed;
             width: 100%;
@@ -100,8 +100,8 @@
             border-color: var(--text-white);
             background-color: rgba(255, 255, 255, 0.05);
         }
-        /* Modern Hero Section */
         
+        /* Modern Hero Section */
         .hero {
             position: relative;
             height: 100vh;
@@ -112,8 +112,8 @@
             justify-content: center;
             background-color: var(--primary-bg);
         }
-        /* 3D Glass Elements */
         
+        /* 3D Glass Elements */
         .glass-container {
             position: absolute;
             width: 100%;
@@ -198,8 +198,8 @@
             transform: rotateX(-90deg) translateZ(150px);
             background: linear-gradient(135deg, rgba(217, 69, 255, 0.1), rgba(255, 255, 255, 0.03));
         }
-        /* 3D Ribbons */
         
+        /* 3D Ribbons */
         .ribbon-container {
             position: absolute;
             width: 100%;
@@ -240,8 +240,8 @@
                 transform: rotateX(var(--rotateX-end, 360deg)) rotateY(var(--rotateY-end, 360deg)) rotateZ(var(--rotateZ-end, 360deg)) translateZ(var(--translateZ-end, 0px));
             }
         }
-        /* Purple Ribbon */
         
+        /* Purple Ribbon */
         .ribbon:nth-child(1) {
             --ribbon-color: rgba(151, 71, 255, 0.8);
             --ribbon-glow-color: 151, 71, 255;
@@ -265,8 +265,8 @@
             text-align: center;
             padding: 0 30px;
         }
-        /* Blue Ribbon */
         
+        /* Blue Ribbon */
         .ribbon:nth-child(2) {
             --ribbon-color: rgba(46, 123, 255, 0.8);
             --ribbon-glow-color: 46, 123, 255;
@@ -290,8 +290,8 @@
             text-align: center;
             padding: 0 30px;
         }
-        /* Gray Ribbon */
         
+        /* Gray Ribbon */
         .ribbon:nth-child(3) {
             --ribbon-color: rgba(255, 255, 255, 0.15);
             --ribbon-glow-color: 255, 255, 255;
@@ -315,8 +315,8 @@
             text-align: center;
             padding: 0 30px;
         }
-        /* Star/Dot Decorations */
         
+        /* Star/Dot Decorations */
         .ribbon span {
             display: inline-flex;
             align-items: center;
@@ -354,15 +354,20 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
-        /* Glass Reflections */
         
+        /* Glass Reflections */
         .glass-reflection {
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.05) 20%, rgba(255, 255, 255, 0.1) 40%, rgba(255, 255, 255, 0.05) 60%, rgba(255, 255, 255, 0) 80%);
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0) 0%, 
+                rgba(255, 255, 255, 0.05) 20%, 
+                rgba(255, 255, 255, 0.1) 40%,
+                rgba(255, 255, 255, 0.05) 60%,
+                rgba(255, 255, 255, 0) 80%);
             z-index: 3;
             pointer-events: none;
             animation: moveReflection 8s linear infinite;
@@ -376,8 +381,8 @@
                 transform: translateX(100%) translateY(100%) rotate(45deg);
             }
         }
-        /* Content Section */
         
+        /* Content Section */
         .hero-content {
             position: relative;
             z-index: 10;
@@ -427,20 +432,23 @@
             border-color: rgba(255, 255, 255, 0.3);
             transform: translateY(-3px);
         }
-        /* Responsive Design */
         
+        /* Responsive Design */
         @media (max-width: 992px) {
             .hero-title {
                 font-size: 7rem;
             }
+            
             .ribbon:nth-child(1) {
                 width: 500px;
                 left: calc(50% - 250px);
             }
+            
             .ribbon:nth-child(2) {
                 width: 550px;
                 left: calc(50% - 275px);
             }
+            
             .ribbon:nth-child(3) {
                 width: 450px;
                 left: calc(50% - 225px);
@@ -451,20 +459,25 @@
             .nav-links {
                 display: none;
             }
+            
             .hero-title {
                 font-size: 4.5rem;
             }
+            
             .hero-subtitle {
                 font-size: 1.2rem;
             }
+            
             .ribbon:nth-child(1) {
                 width: 400px;
                 left: calc(50% - 200px);
             }
+            
             .ribbon:nth-child(2) {
                 width: 450px;
                 left: calc(50% - 225px);
             }
+            
             .ribbon:nth-child(3) {
                 width: 350px;
                 left: calc(50% - 175px);
@@ -475,17 +488,21 @@
             .hero-title {
                 font-size: 3.5rem;
             }
+            
             .hero-subtitle {
                 font-size: 1rem;
             }
+            
             .ribbon:nth-child(1) {
                 width: 300px;
                 left: calc(50% - 150px);
             }
+            
             .ribbon:nth-child(2) {
                 width: 350px;
                 left: calc(50% - 175px);
             }
+            
             .ribbon:nth-child(3) {
                 width: 250px;
                 left: calc(50% - 125px);
@@ -493,7 +510,6 @@
         }
     </style>
 </head>
-
 <body>
     <!-- Header -->
     <header>
@@ -525,7 +541,7 @@
                 <div class="cube-face"></div>
             </div>
         </div>
-
+        
         <!-- 3D Ribbons -->
         <div class="ribbon-container">
             <div class="ribbon">
@@ -538,10 +554,10 @@
                 <span>Your Party <div class="star"></div> Your Style <div class="arrow"></div> Your Memories <div class="star"></div> Your Party</span>
             </div>
         </div>
-
+        
         <!-- Glass Reflection Effect -->
         <div class="glass-reflection"></div>
-
+        
         <!-- Hero Content -->
         <div class="hero-content">
             <h1 class="hero-title">inviit</h1>
@@ -550,5 +566,4 @@
         </div>
     </section>
 </body>
-
 </html>
